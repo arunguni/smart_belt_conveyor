@@ -1,5 +1,5 @@
 # Smart Belt Conveyor
-1.	Introduction
+## Introduction
 In this project, the design and working prototype of an IoT-based smart belt conveyor has been achieved using the Wokwi simulation platform, MQTT server, and Node-RED. MQTT protocol uses the Publisher subscriber concept for communication, using which data is collected from Wokwi and transferred over network to the Node-RED tool (Kashyap, Sharma and Verma, 2021). Node-RED on the other hand, is a visual tool based on flow-based programming that is used for developing IoT systems, which is used further to develop the user interface for monitoring this project smart belt conveyor (Clerissi et al., 2018). Developed system accurately and reliably collects data from multiple sensors like temperature, pressure and humidity, stores data in csv file, and also maintains the security of data by authenticating MQTT broker with unique Id.
 2.	Updated System
 2.1.	Updated system architecture
