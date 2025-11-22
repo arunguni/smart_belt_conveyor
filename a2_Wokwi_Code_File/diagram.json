@@ -1,0 +1,115 @@
+{
+  "version": 1,
+  "author": "Arun Guni",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-pi-pico-w",
+      "id": "pico",
+      "top": -3.25,
+      "left": 3.55,
+      "attrs": { "cyw43": "1", "env": "micropython" }
+    },
+    {
+      "type": "wokwi-pir-motion-sensor",
+      "id": "pir1",
+      "top": 68.92,
+      "left": 230.9,
+      "rotate": 90,
+      "attrs": { "delayTime": "0.010477", "retrigger": "0", "inhibitTime": "0.001" }
+    },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": 108.6,
+      "left": 152.7,
+      "rotate": 90,
+      "attrs": { "temperature": "36.1", "humidity": "31" }
+    },
+    { "type": "chip-pressure-sensor", "id": "chip1", "top": -46.98, "left": 216, "attrs": {} },
+    {
+      "type": "wokwi-stepper-motor",
+      "id": "stepper1",
+      "top": -297.61,
+      "left": 70.62,
+      "attrs": { "size": "8", "arrow": "orange", "display": "none", "gearRatio": "1:1" }
+    },
+    { "type": "wokwi-a4988", "id": "drv1", "top": -139, "left": 5.2, "rotate": 270, "attrs": {} },
+    { "type": "wokwi-led", "id": "led1", "top": -22.8, "left": -73, "attrs": { "color": "red" } },
+    {
+      "type": "wokwi-stepper-motor",
+      "id": "stepper2",
+      "top": -297.61,
+      "left": -54.18,
+      "attrs": { "size": "8", "arrow": "orange", "display": "none", "gearRatio": "1:1" }
+    },
+    { "type": "chip-pressure-sensor1", "id": "chip2", "top": -8.58, "left": 216, "attrs": {} },
+    { "type": "chip-pressure-sensor2", "id": "chip3", "top": 29.82, "left": 216, "attrs": {} },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht2",
+      "top": 4.8,
+      "left": -142.5,
+      "rotate": 270,
+      "attrs": { "temperature": "18.9", "humidity": "21.5" }
+    },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht3",
+      "top": 72,
+      "left": -142.5,
+      "rotate": 270,
+      "attrs": { "temperature": "29", "humidity": "26" }
+    },
+    {
+      "type": "wokwi-pir-motion-sensor",
+      "id": "pir2",
+      "top": 165.48,
+      "left": -168.3,
+      "rotate": 270,
+      "attrs": { "delayTime": "0.010477", "retrigger": "0", "inhibitTime": "0.001" }
+    }
+  ],
+  "connections": [
+    [ "pir1:VCC", "pico:3V3", "red", [ "h-134.4", "v-67.2" ] ],
+    [ "chip1:VCC", "pico:3V3", "red", [ "h-124.8", "v67.2" ] ],
+    [ "stepper1:A-", "drv1:2B", "green", [ "v38.4", "h-19.28" ] ],
+    [ "stepper1:A+", "drv1:2A", "green", [ "v28.8", "h-57.6", "v0", "h-19.28" ] ],
+    [ "stepper1:B+", "drv1:1A", "green", [ "v19.2", "h-57.6", "v0", "h-19.28" ] ],
+    [ "stepper1:B-", "drv1:1B", "green", [ "v9.6", "h-57.6", "v0", "h-19.28" ] ],
+    [ "drv1:GND.1", "pico:GND.1", "black", [ "v-9.75", "h-95.92", "v163.2" ] ],
+    [ "pico:VBUS", "drv1:VDD", "red", [ "h9.91", "v-153.6", "h-28.88" ] ],
+    [ "drv1:SLEEP", "drv1:RESET", "green", [ "v0" ] ],
+    [ "stepper2:B-", "drv1:1B", "green", [ "v9.6", "h95.92" ] ],
+    [ "stepper2:B+", "drv1:1A", "green", [ "v19.2", "h95.92" ] ],
+    [ "stepper2:A+", "drv1:2A", "green", [ "v28.8", "h95.92" ] ],
+    [ "stepper2:A-", "drv1:2B", "green", [ "v38.4", "h76.72" ] ],
+    [ "chip1:GND", "pico:GND.8", "black", [ "h-105.6", "v67.2" ] ],
+    [ "chip1:A0", "pico:GP28", "green", [ "h-57.6", "v86.4" ] ],
+    [ "pico:GND.7", "chip2:GND", "black", [ "h57.91", "v-124.8" ] ],
+    [ "pico:GP27", "chip2:A0", "green", [ "h96.31", "v-67.2" ] ],
+    [ "pico:3V3", "chip3:VCC", "red", [ "h19.51", "v-9.6" ] ],
+    [ "pico:GP26", "chip3:A0", "green", [ "h105.91", "v-38.4" ] ],
+    [ "chip3:GND", "pico:GND.7", "black", [ "h-86.4", "v28.8" ] ],
+    [ "chip2:VCC", "pico:3V3", "red", [ "h-124.8", "v105.6" ] ],
+    [ "drv1:DIR", "pico:GP0", "green", [ "v28.8", "h-76.8", "v57.6" ] ],
+    [ "drv1:STEP", "pico:GP1", "green", [ "v19.2", "h-76.8", "v76.8" ] ],
+    [ "pir1:OUT", "pico:GP22", "green", [ "h-134.4", "v-9.74" ] ],
+    [ "pir1:GND", "pico:GND.6", "black", [ "h0" ] ],
+    [ "dht1:VCC", "pico:3V3", "red", [ "h-28.8", "v-96" ] ],
+    [ "dht1:SDA", "pico:GP21", "green", [ "h-38.4", "v-19.1" ] ],
+    [ "dht1:GND", "pico:GND.5", "black", [ "h-19.2", "v-9.64" ] ],
+    [ "led1:A", "pico:GP2", "green", [ "v0" ] ],
+    [ "pico:GND.1", "led1:C", "black", [ "h0" ] ],
+    [ "dht2:GND", "pico:GND.2", "black", [ "h48", "v28.8" ] ],
+    [ "dht2:SDA", "pico:GP3", "green", [ "h57.6", "v-19.3" ] ],
+    [ "dht2:VCC", "pico:3V3", "red", [ "h38.4", "v134.4", "h115.2", "v-163.2" ] ],
+    [ "pico:3V3", "dht3:VCC", "red", [ "h19.51", "v163.2", "h-115.2", "v-28.8" ] ],
+    [ "dht3:GND", "pico:GND.2", "black", [ "h48", "v-76.8" ] ],
+    [ "dht3:SDA", "pico:GP6", "green", [ "h57.6", "v-38.5" ] ],
+    [ "pico:3V3", "pir2:VCC", "red", [ "h19.51", "v163.2", "h-134.4", "v9.6" ] ],
+    [ "pir2:GND", "pico:GND.4", "black", [ "h19.2", "v-18.98" ] ],
+    [ "pir2:OUT", "pico:GP14", "green", [ "h28.8", "v-28.66", "h38.4", "v-0.04" ] ]
+  ],
+  "dependencies": {}
+}
